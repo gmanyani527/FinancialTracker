@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -283,21 +284,34 @@ public class FinancialTracker {
                 case "1":
                     // Generate a report for all transactions within the current month,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    CurrentMonth();
+                    break;
                 case "2":
                     // Generate a report for all transactions within the previous month,
                     // including the date, time, description, vendor, and amount for each transaction.
+
+                    previousMonth();
+                    break;
                 case "3":
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
-
+                    currentYear();
+                    break;
                 case "4":
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    previousYear();
+                    break;
                 case "5":
                     // Prompt the user to enter a vendor name, then generate a report for all transactions
                     // with that vendor, including the date, time, description, vendor, and amount for each transaction.
+                    System.out.println("Enter the vendor that you would like to search for? ");
+                    String answer = scanner.nextLine();
+                    filterTransactionsByVendor(answer);
+                    break;
                 case "0":
                     running = false;
+                    break;
                 default:
                     System.out.println("Invalid option");
                     break;
@@ -312,6 +326,85 @@ public class FinancialTracker {
         // The method loops through the transactions list and checks each transaction's date against the date range.
         // Transactions that fall within the date range are printed to the console.
         // If no transactions fall within the date range, the method prints a message indicating that there are no results.
+
+
+
+        for (Transaction transaction : transactions) {
+            LocalDate date = transaction.getDate();
+            if (transaction.getDate().isAfter(startDate) || transaction.getDate().isEqual(startDate) &&
+                    transaction.getDate().isEqual(endDate) || transaction.getDate().isBefore(endDate)) {
+                System.out.println(transaction);
+            }
+
+
+        }
+    }
+
+    public static void currentYear(){
+        LocalDate today = LocalDate.now();
+        int  currentYear = today.getYear();
+        int  currentMonth = today.getMonthValue();
+        for (Transaction transaction : transactions) {
+            LocalDate transDate = transaction.getDate();
+
+            if(transDate.getYear() == currentYear){
+                System.out.println(transaction);
+            }
+        }
+
+
+    }
+
+    public static void CurrentMonth(){
+
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+
+        for (Transaction transaction : transactions) {
+            LocalDate transDate = transaction.getDate();
+
+            if(transDate.getYear() == currentYear && transDate.getMonthValue() == currentMonth){
+                System.out.println(transaction);
+            }
+        }
+
+
+    }
+    public static void previousMonth(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous month");
+        String input = scanner.nextLine();
+
+        LocalDate userDate = LocalDate.parse(input);
+        LocalDate previousMonthDate = userDate.minusMonths(1);
+        int targetYear = previousMonthDate.getYear();
+        int targetMonth = previousMonthDate.getMonthValue();
+
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getDate();
+            if(transactionDate.getYear() == targetYear && transactionDate.getMonthValue()==targetMonth){
+                System.out.println(transaction);
+            }
+        }
+    }
+    public static void previousYear(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous year");
+        String input = scanner.nextLine();
+
+        LocalDate userDate = LocalDate.parse(input);
+        LocalDate previousMonthDate = userDate.minusYears(1);
+        int targetYear = previousMonthDate.getYear();
+        int targetMonth = previousMonthDate.getMonthValue();
+
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getDate();
+            if(transactionDate.getYear() == targetYear && transactionDate.getMonthValue()==targetMonth){
+                System.out.println(transaction);
+            }
+        }
     }
 
     private static void filterTransactionsByVendor(String vendor) {
@@ -320,5 +413,11 @@ public class FinancialTracker {
         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+
+        for (Transaction transaction : transactions) {
+            if(transaction.getVendor().equalsIgnoreCase(vendor)){
+                System.out.println(transaction);
+            }
+        }
     }
 }
