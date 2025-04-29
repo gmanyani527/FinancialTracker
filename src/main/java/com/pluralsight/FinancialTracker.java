@@ -343,7 +343,6 @@ public class FinancialTracker {
     public static void currentYear(){
         LocalDate today = LocalDate.now();
         int  currentYear = today.getYear();
-        int  currentMonth = today.getMonthValue();
         for (Transaction transaction : transactions) {
             LocalDate transDate = transaction.getDate();
 
@@ -375,36 +374,36 @@ public class FinancialTracker {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous month");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
 
         LocalDate userDate = LocalDate.parse(input);
         LocalDate previousMonthDate = userDate.minusMonths(1);
-        int targetYear = previousMonthDate.getYear();
         int targetMonth = previousMonthDate.getMonthValue();
 
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getDate();
-            if(transactionDate.getYear() == targetYear && transactionDate.getMonthValue()==targetMonth){
+            if( transactionDate.getMonthValue()==targetMonth){
                 System.out.println(transaction);
             }
         }
+
     }
     public static void previousYear(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous year");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
 
         LocalDate userDate = LocalDate.parse(input);
         LocalDate previousMonthDate = userDate.minusYears(1);
         int targetYear = previousMonthDate.getYear();
-        int targetMonth = previousMonthDate.getMonthValue();
 
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getDate();
-            if(transactionDate.getYear() == targetYear && transactionDate.getMonthValue()==targetMonth){
+            if(transactionDate.getYear() == targetYear){
                 System.out.println(transaction);
             }
         }
+
     }
 
     private static void filterTransactionsByVendor(String vendor) {
