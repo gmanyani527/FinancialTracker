@@ -419,4 +419,24 @@ public class FinancialTracker {
             }
         }
     }
+
+
+    /*Challenge Yourself
+If you have time and want to challenge yourself, consider the following:
+On the reports screen add another option for a custom search. Prompt the user
+for search values for all ledger entry properties.
+3
+• 6) Custom Search - prompt the user for the following search values.
+o Start Date
+o End Date
+o Description
+o Vendor
+o Amount
+• If the user enters a value for a field you should filter on that field
+• If the user does not enter a value, you should not filter on that field
+
+     */
+
+
+    
 }
