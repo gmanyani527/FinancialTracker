@@ -316,12 +316,16 @@ public class FinancialTracker {
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
 
-                    System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous year");
-                    input = scanner.nextLine().trim();
+                   // System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous year");
+                    //input = scanner.nextLine().trim();
 
-                     userDate = LocalDate.parse(input);
-                     startDate = userDate.minusYears(1);
-                    endDate = LocalDate.of(startDate.getYear(),12, 31);
+                     //userDate = LocalDate.parse(input,DATE_FORMATTER);
+                    userDate = today;
+                      startDate = userDate.minusYears(1);
+                    //startDate = LocalDate.of(Date,1,1);
+                    int prev = startDate.getYear();
+                    startDate = LocalDate.of(prev, 1,1);
+                     endDate = LocalDate.of(prev,12, 31);
                     filterTransactionsByDate(startDate, endDate);
 
                     break;
@@ -357,8 +361,8 @@ public class FinancialTracker {
 
         for (Transaction transaction : transactions) {
             LocalDate date = transaction.getDate();
-            if (transaction.getDate().isAfter(startDate) || transaction.getDate().isEqual(startDate) &&
-                    transaction.getDate().isEqual(endDate) || transaction.getDate().isBefore(endDate)) {
+          if ((date.isEqual(startDate) || date.isAfter(startDate)) &&
+                    (date.isEqual(endDate) || date.isBefore(endDate))) {
                 System.out.println(transaction);
             }
 
@@ -467,6 +471,10 @@ o Amount
 • If the user does not enter a value, you should not filter on that field
 
      */
+
+    public static void FilterSearch(Scanner scanner){
+        System.out.println("Enter the ");
+    }
 
 
     
