@@ -315,7 +315,15 @@ public class FinancialTracker {
                 case "4":
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
-                    previousYear();
+
+                    System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous year");
+                    input = scanner.nextLine().trim();
+
+                     userDate = LocalDate.parse(input);
+                     startDate = userDate.minusYears(1);
+                    endDate = LocalDate.of(startDate.getYear(),12, 31);
+                    filterTransactionsByDate(startDate, endDate);
+
                     break;
                 case "5":
                     // Prompt the user to enter a vendor name, then generate a report for all transactions
@@ -358,7 +366,7 @@ public class FinancialTracker {
         }
     }
 
-    public static void currentYear(){
+    /*   public static void currentYear(){
         LocalDate today = LocalDate.now();
          LocalDate startDate = LocalDate.of(today.getYear(),1,1);
          LocalDate endDate = today;
@@ -371,7 +379,7 @@ public class FinancialTracker {
         }
 
 
-    }
+    } */
 
     /*public static void CurrentMonth(){
 
@@ -390,7 +398,7 @@ public class FinancialTracker {
 */
 
 
-    public static void previousMonth(){
+ /*   public static void previousMonth(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous month");
@@ -416,8 +424,9 @@ public class FinancialTracker {
         String input = scanner.nextLine().trim();
 
         LocalDate userDate = LocalDate.parse(input);
-        LocalDate previousMonthDate = userDate.minusYears(1);
-        int targetYear = previousMonthDate.getYear();
+        LocalDate previousYearDate = userDate.minusYears(1);
+        endDate = LocalDate.of(previousYearDate.getYear(),12, 31);
+        int targetYear = previousYearDate.getYear();
 
         for (Transaction transaction : transactions) {
             LocalDate transactionDate = transaction.getDate();
@@ -426,7 +435,7 @@ public class FinancialTracker {
             }
         }
 
-    }
+    } */
 
     private static void filterTransactionsByVendor(String vendor) {
         // This method filters the transactions by vendor and prints a report to the console.
