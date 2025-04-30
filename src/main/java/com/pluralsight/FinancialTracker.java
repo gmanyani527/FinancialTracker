@@ -268,6 +268,7 @@ public class FinancialTracker {
 
     private static void reportsMenu(Scanner scanner) {
         boolean running = true;
+
         while (running) {
             System.out.println("Reports");
             System.out.println("Choose an option:");
@@ -279,23 +280,37 @@ public class FinancialTracker {
             System.out.println("0) Back");
 
             String input = scanner.nextLine().trim();
-
+            LocalDate today = LocalDate.now();
+            LocalDate startDate;
+            LocalDate endDate;
             switch (input) {
                 case "1":
                     // Generate a report for all transactions within the current month,
                     // including the date, time, description, vendor, and amount for each transaction.
-                    CurrentMonth();
+                    startDate = today.withDayOfMonth(1);
+                    endDate = today;
+                    filterTransactionsByDate(startDate,endDate);
                     break;
                 case "2":
                     // Generate a report for all transactions within the previous month,
                     // including the date, time, description, vendor, and amount for each transaction.
 
-                    previousMonth();
+                    System.out.println("Enter a date (yyyy-MM-dd) to get transaction from previous month");
+                    input = scanner.nextLine().trim();
+
+                    LocalDate userDate = LocalDate.parse(input);
+                    LocalDate previousMonthDate = userDate.minusMonths(1);
+                    startDate = previousMonthDate.withDayOfMonth(1);
+                    endDate =  previousMonthDate.withDayOfMonth(previousMonthDate.lengthOfMonth());
+                    filterTransactionsByDate(startDate, endDate);
                     break;
                 case "3":
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
-                    currentYear();
+                     today = LocalDate.now();
+                     startDate = LocalDate.of(today.getYear(),1,1);
+                     endDate = today;
+                    filterTransactionsByDate(startDate, endDate);
                     break;
                 case "4":
                     // Generate a report for all transactions within the previous year,
@@ -315,7 +330,10 @@ public class FinancialTracker {
                 default:
                     System.out.println("Invalid option");
                     break;
+
             }
+
+
         }
     }
 
@@ -342,7 +360,8 @@ public class FinancialTracker {
 
     public static void currentYear(){
         LocalDate today = LocalDate.now();
-        int  currentYear = today.getYear();
+         LocalDate startDate = LocalDate.of(today.getYear(),1,1);
+         LocalDate endDate = today;
         for (Transaction transaction : transactions) {
             LocalDate transDate = transaction.getDate();
 
@@ -354,7 +373,7 @@ public class FinancialTracker {
 
     }
 
-    public static void CurrentMonth(){
+    /*public static void CurrentMonth(){
 
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue();
@@ -367,9 +386,10 @@ public class FinancialTracker {
                 System.out.println(transaction);
             }
         }
+        }
+*/
 
 
-    }
     public static void previousMonth(){
         Scanner scanner = new Scanner(System.in);
 
@@ -378,6 +398,8 @@ public class FinancialTracker {
 
         LocalDate userDate = LocalDate.parse(input);
         LocalDate previousMonthDate = userDate.minusMonths(1);
+        startDate = previousMonthDate.withDayOfMonth(1);
+        endDate =  previousMonthDate.withDayOfMonth(previousMonthDate.lengthOfMonth());
         int targetMonth = previousMonthDate.getMonthValue();
 
         for (Transaction transaction : transactions) {
