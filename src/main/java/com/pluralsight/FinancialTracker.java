@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class FinancialTracker {
 
@@ -336,6 +335,9 @@ public class FinancialTracker {
                     String answer = scanner.nextLine();
                     filterTransactionsByVendor(answer);
                     break;
+                case "6":
+                    FilterSearch(scanner);
+                    break;
                 case "0":
                     running = false;
                     break;
@@ -473,7 +475,76 @@ o Amount
      */
 
     public static void FilterSearch(Scanner scanner){
-        System.out.println("Enter the ");
+        System.out.println("Enter search filters (press Enter to skip a field):");
+
+        System.out.print("Start Date (yyyy-MM-dd): ");
+        String startDateInput = scanner.nextLine().trim();
+
+        System.out.print("End Date (yyyy-MM-dd): ");
+        String endDateInput = scanner.nextLine().trim();
+
+        System.out.print("Description: ");
+        String descriptionInput = scanner.nextLine().trim().toLowerCase();
+
+        System.out.print("Vendor: ");
+        String vendorInput = scanner.nextLine().trim().toLowerCase();
+
+        System.out.print("Amount (exact match): ");
+        String amountInput = scanner.nextLine().trim();
+
+
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+        Double amount = null;
+        String vendor = null;
+        String description = null;
+        try {
+            if (!startDateInput.isEmpty()) {
+                startDate = LocalDate.parse(startDateInput);
+            }
+            if (!endDateInput.isEmpty()) {
+                endDate = LocalDate.parse(endDateInput);
+            }
+            if (!amountInput.isEmpty()) {
+                amount = Double.parseDouble(amountInput);
+            }
+            if (!vendorInput.isEmpty()) {
+                vendor = vendorInput;
+            }
+            if(!descriptionInput.isEmpty()) {
+                description = descriptionInput;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Invalid input format. Search aborted.");
+            return;
+        }
+        System.out.println("\nFiltered Results:");
+        boolean found = false;
+
+        for (Transaction t : transactions) {
+            boolean matches = true;
+
+            if (startDate != null && t.getDate().isBefore(startDate))
+                matches = false;
+            if (endDate != null && t.getDate().isAfter(endDate))
+                matches = false;
+            if (!descriptionInput.isEmpty() && !t.getDescription().toLowerCase().contains(descriptionInput))
+                matches = false;
+            if (!vendorInput.isEmpty() && !t.getVendor().toLowerCase().contains(vendorInput))
+                matches = false;
+            if (amount != null && t.getAmount() != amount)
+                matches = false;
+
+            if (matches) {
+                System.out.println(t);
+                found = true;
+            }
+        }
+
+
+
+
     }
 
 
