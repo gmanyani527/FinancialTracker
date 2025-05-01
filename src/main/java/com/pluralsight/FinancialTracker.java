@@ -276,6 +276,7 @@ public class FinancialTracker {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search by Vendor");
+            System.out.println("6) Search by Vendor");
             System.out.println("0) Back");
 
             String input = scanner.nextLine().trim();
@@ -547,6 +548,14 @@ o Amount
 
     }
 
+    //As a user, I want to see a main menu that has clear options, so that I can choose what action I want to do
+    //As a user, I want to have the option to add a deposit in the menu, so that I can record money that has been added to my account
+    //As a user, I want to record a payment transaction so that my outgoing expenses are tracked and saved
+    //As a user, I want to view all my transactions, or filter by deposits or payments, so that I can track my financial history more easily.
+    //As a user, I want to generate various filtered reports (by date or vendor) so I can analyze my transactions efficiently.
+    //As a user, I want to filter my transactions between two specific dates so that I can view only relevant financial data for a given time period.
+    //As a user, I want to search my transactions by vendor so that I can quickly find all payments or deposits made to a specific vendor.
+    //As a user, I want to search for transactions using multiple filters (date range, description, vendor, amount) so that I can narrow down my results based on specific criteria.
 
     
 }
