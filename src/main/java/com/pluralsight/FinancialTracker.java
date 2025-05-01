@@ -276,7 +276,7 @@ public class FinancialTracker {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search by Vendor");
-            System.out.println("6) Search by Vendor");
+            System.out.println("6) Filter by Search");
             System.out.println("0) Back");
 
             String input = scanner.nextLine().trim();
