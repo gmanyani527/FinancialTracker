@@ -54,7 +54,7 @@ public class FinancialTracker {
             }
         }
 
-        scanner.close();
+
     }
 
     public static ArrayList<Transaction> loadTransactions(String fileName) {
@@ -177,10 +177,11 @@ public class FinancialTracker {
             System.out.println("Enter the Amount of money: ");
             answer3 = scanner.nextDouble();
             scanner.nextLine();
-            answer3 *= -1;
+
             if (answer3 < 0) {
-                System.out.println("The amount is not positive try again");
+                System.out.println("The amount msut be greater than zero, try again");
             } else {
+                answer3 *= -1;
                 rightAnswer = true;
 
             }
@@ -234,7 +235,7 @@ public class FinancialTracker {
                     System.out.println("Invalid option");
                     break;
             }
-        } scanner.close();
+        }
     }
 
     private static void displayLedger() {
@@ -545,7 +546,7 @@ o Amount
 
 
 
-
+        scanner.close();
     }
 
     //As a user, I want to see a main menu that has clear options, so that I can choose what action I want to do

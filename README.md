@@ -1,4 +1,4 @@
-# Project Title
+# Financial Tracker
 
 ## Description of the Project
 
@@ -42,21 +42,20 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java: Java SE Development Kit 17.0.11
+- java.util.* -----	Collections (ArrayList, Scanner), HashSet, etc.
+- java.io.*	----- File I/O (BufferedReader, BufferedWriter, FileReader, FileWriter)
+- java.time.* -----	Date/time manipulation (LocalDate, LocalTime, DateTimeFormatter)
+- java.time.temporal.* ----- 	(Optional) For things like ChronoUnit if used later
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
-
-## Future Work
-
+![FinancialTrackerGIF.gif](FinancialTrackerScreenshot/FinancialTrackerGIF.gif)
+## Future Works
 Outline potential future enhancements or functionalities you might consider adding:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Use JavaSwing or JavaFX to make a GUI 
 
 ## Resources
 
@@ -64,16 +63,17 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 - [Java Programming Tutorial](https://www.example.com)
 - [Effective Java](https://www.example.com)
+- [TutorialsPoint](https://www.tutorialspoint.com/)
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- Guribal Manyani (Myself) - Developer
+- Instructor Raymound 
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
+- Thank you to Raymond Maroun for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.
  
