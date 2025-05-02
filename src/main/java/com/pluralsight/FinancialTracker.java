@@ -228,6 +228,8 @@ public class FinancialTracker {
     }
     // Displays all transactions
     private static void displayLedger() {
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("-----------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
             System.out.println(transaction);
         }
@@ -235,7 +237,8 @@ public class FinancialTracker {
 
     // Displays only deposits (positive amounts)
     private static void displayDeposits() {
-
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
             if(transaction.getAmount() > 0){
                 System.out.println(transaction.toString());
@@ -247,7 +250,8 @@ public class FinancialTracker {
 
     // Displays only payments (negative amounts)
     private static void displayPayments() {
-
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
             if (transaction.getAmount() < 0) {
                 System.out.println(transaction.toString());
@@ -338,6 +342,8 @@ public class FinancialTracker {
 
     // Filters and prints transactions within a given date range
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
 
         for (Transaction transaction : transactions) {
             LocalDate date = transaction.getDate();
@@ -424,6 +430,9 @@ public class FinancialTracker {
 
     // Filters transactions by vendor name
     private static void filterTransactionsByVendor(String vendor) {
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
+
         for (Transaction transaction : transactions) {
             if(transaction.getVendor().equalsIgnoreCase(vendor)){
                 System.out.println(transaction);
@@ -449,6 +458,9 @@ o Amount
      */
     // Allows the user to search using multiple optional filters
     public static void FilterSearch(Scanner scanner){
+        System.out.printf("%-12s %-10s %-30s %-25s %10s\n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("----------------------------------------------------------------------------------------------");
+
         System.out.println("Enter search filters (press Enter to skip a field):");
 
         System.out.print("Start Date (yyyy-MM-dd): ");

@@ -39,7 +39,12 @@ private double amount;
 
     @Override
     public String toString() {
-        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        return String.format("%-12s %-10s %-30s %-25s %10.2f",
+                date.toString(),
+                time.toString(),
+                description,
+                vendor,
+                amount);
     }
     // date = LocalDate.parse(input, DATE_FORMATTER);
    // dateTime = LocalDateTime.parse(input, TIME_FORMATTER);
